@@ -1,0 +1,166 @@
+@import compass/css3/box-shadow
+@import compass/css3/border-radius
+
+body
+  background: #ebebeb url(../images/light_noise_diagonal.png)
+  color: #555
+
+h1
+  color: #9bbd15
+  float: left
+  margin-left: -3px
+
+h2
+  color: #aaa
+  float: left
+  margin: 34px 0 0 5px
+  width: 150px
+
+h3
+  color: #555
+  border-bottom: 1px solid #ddd
+  margin: 1em 0 0.75em 0
+  padding: 1em 0 5px 0
+
+h4
+  margin-bottom: -10px
+  padding-top: 5px
+
+a
+  &:link, &:visited
+    color: #859e24
+    text-decoration: none
+  &:hover, &:active
+    color: #859e24
+    text-decoration: underline
+
+p, ul, ol, pre
+  margin-bottom: 1.5em
+
+ul
+  list-style: disc outside
+  padding-left: 29px
+
+ol
+  list-style: decimal-leading-zero outside
+  padding-left: 29px
+
+blockquote
+  border-left: 2px solid #ccc
+  color: #999
+  padding-left: 1em
+
+/* CODE */
+
+a:hover code, a:active code
+  background: #859e24
+  color: #f3f3f3
+  text-decoration: none
+  +box-shadow(#fff, 1px, 1px, 0, 0, inset)
+
+code
+  background: rgba(180, 180, 180, 0.1)
+  padding: 3px 6px 4px 6px
+  white-space: nowrap
+  +border-radius(2px)
+  +box-shadow(#ddd, 1px, 1px, 3px, 0, inset)
+
+pre code
+  display: block
+  margin: 1.25em 0
+  padding: 0.75em 1.25em
+  overflow: auto
+  white-space: pre
+
+pre code::-webkit-scrollbar
+  height: 8px
+  width: 8px
+
+pre code::-webkit-scrollbar-track-piece
+  margin-bottom: 10px
+  background: #e5e5e5
+  +border-radius(2px)
+
+pre code::-webkit-scrollbar-thumb:vertical
+  height: 25px
+  background: #ccc
+  +border-radius(2px)
+
+pre code::-webkit-scrollbar-thumb:horizontal
+  width: 25px
+  background: #ccc
+  +border-radius(2px)
+
+/* LAYOUT */
+
+.center
+  width: 960px
+  margin: 0 auto
+
+.container
+  width: 960px
+  margin: 50px auto 25px auto
+
+#content
+  float: left
+  margin-left: 60px
+  width: 740px
+
+header
+  overflow: hidden
+  margin-bottom: 36px
+  height: 130px
+
+nav
+  float: left
+  width: 160px
+
+  .nav-list
+    position: fixed
+    padding-top: 62px
+    width: 160px
+  ol
+    list-style: none
+    padding: 0
+    margin-left: 10px
+
+#links
+  list-style: none
+  padding-left: 0
+  overflow: hidden
+  li
+    float: left
+    margin: 0 8px 5px 0
+
+footer
+  color: #aaa
+  margin-top: 100px
+
+/* CLEARFIX */
+
+.container:after
+  content: "\0020"
+  display: block
+  height: 0
+  clear: both
+  visibility: hidden
+
+.clearfix:before, .clearfix:after
+  content: '\0020'
+  display: block
+  overflow: hidden
+  visibility: hidden
+  width: 0
+  height: 0
+.clearfix:after
+  clear: both
+.clearfix
+  zoom: 1
+
+.clear
+  clear: both
+  display: block
+  overflow: hidden
+  visibility: hidden
+  width: 0
+  height: 0

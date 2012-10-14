@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>HTTPI: a common interface for Ruby HTTP libraries</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <!--[if lt IE 9]>
+      <script src="/javascripts/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+      {% include nav.html %}
+
+      <div id="content">
+        {% include header.html %}
+
+        <article>
+          {{content}}
+        </article>
+
+        {% include footer.html %}
+      </div>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>
