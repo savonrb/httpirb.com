@@ -198,7 +198,7 @@ request.auth.gssnegotiate                    # HTTP Negotiate/SPNEGO (aka Kerber
 ```
 
 Please note that HTTP Negotiate authentication is only supported by the Curb adapter.  
-For experimental NTLM authentication, please use the [httpi-ntlm](http://rubygems.org/gems/httpi-ntml) gem.
+For experimental NTLM authentication, please use the [httpi-ntlm](http://rubygems.org/gems/httpi-ntlm) gem.
 
 ``` ruby
 request.auth.ntlm("username", "password")    # NTLM auth credentials
