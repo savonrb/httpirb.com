@@ -3,6 +3,7 @@ title: Getting started
 layout: default
 ---
 
+
 ### Installation
 
 HTTPI is available through [Rubygems](http://rubygems.org/gems/httpi) and can be installed via:
@@ -27,7 +28,7 @@ HTTPI provides a common interface for Ruby’s most popular HTTP clients:
 * [Curb](http://rubygems.org/gems/curb)
 * [Net::HTTP](http://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
 
-Support for EventMachine was recently pushed to master and will be released soon:
+As of version 2, HTTPI supports EventMachine:
 
 * [EM-HTTP-Request](http://rubygems.org/gems/em-http-request) (also requires [EM-Synchrony](http://rubygems.org/gems/em-synchrony))
 
@@ -47,6 +48,38 @@ You can also manually specify which adapter you would like to use:
 
 ``` ruby
 HTTPI.adapter = :curb  # or one of [:httpclient, :em_http, :net_http]
+```
+
+#### Adding new adapters
+
+Also as of version 2, you can extend HTTPI to support your very own adapter by creating a class
+that inherits from `HTTPI::Adapter::Base` and implements a simple interface.
+
+``` ruby
+# [1] inherit from the base class
+class MyAdapter < HTTPI::Adapter::Base
+
+  # [2] register your adapter and a list of dependencies
+  register :my_adapter, deps: %w(some_http_client)
+
+  # [3] your adapter receives the request on initialize
+  def initialize(request)
+    @request = request
+    @client = SomeHTTPClient.new
+  end
+
+  # [4] make the underlying client available to others
+  attr_reader :client
+
+  # [5] execute an arbitary HTTP request
+  def request(method)
+    response = @client.request(method, @request.url, @request.body)
+
+    # [6] always return a response object
+    Response.new(response.code, response.header, response.content)
+  end
+
+end
 ```
 
 
@@ -81,55 +114,60 @@ As you can see, the `HTTPI` module provides access to common HTTP request method
 request object or a certain set of convenience arguments. Along these arguments, you can optionally specify the
 adapter to use per request.
 
-#### GET:
+##### GET:
 
 ``` ruby
 HTTPI.get(request, adapter = nil)
 HTTPI.get(url, adapter = nil)
 ```
 
-#### POST:
+##### POST:
 
 ``` ruby
 HTTPI.post(request, adapter = nil)
 HTTPI.post(url, body, adapter = nil)
 ```
 
-#### HEAD:
+##### HEAD:
 
 ``` ruby
 HTTPI.head(request, adapter = nil)
 HTTPI.head(url, adapter = nil)
 ```
 
-#### PUT:
+##### PUT:
 
 ``` ruby
 HTTPI.put(request, adapter = nil)
 HTTPI.put(url, body, adapter = nil)
 ```
 
-#### DELETE:
+##### DELETE:
 
 ``` ruby
 HTTPI.delete(request, adapter = nil)
 HTTPI.delete(url, adapter = nil)
 ```
 
-#### REQUEST:
+##### REQUEST:
 
 ``` ruby
 HTTPI.request(method, request, adapter = nil)
 ```
 
-The request method is special. You can use it to dynamically specify the HTTP request method to use:
+The request method is special. You can use it to dynamically specify the HTTP request method to use.
 
 ``` ruby
-request = HTTPI::Request.new
-request.url = "http://example.com"
-request.headers = { "Accept-Charset" => "utf-8" }
+http_method = :get
+request = HTTPI::Request.new("http://example.com")
 
-HTTPI.request(:get, request)
+HTTPI.request(http_method, request)
+```
+
+It can also be used for custom HTTP methods. Currently this is only supported by HTTPClient and EM-HTTP-Request.
+
+``` ruby
+HTTPI.request(:custom, request)
 ```
 
 
@@ -146,21 +184,21 @@ HTTPI::Request.new(url: "http://example.com", open_timeout: 15)
 
 Of course, every Hash option also has its own accessor method.
 
-#### URL
+##### URL
 
 ``` ruby
 request.url = "http://example.com"
 request.url # => #<URI::HTTP:0x101c1ab18 URL:http://example.com>
 ```
 
-#### Proxy
+##### Proxy
 
 ``` ruby
 request.proxy = "http://example.com"
 request.proxy # => #<URI::HTTP:0x101c1ab18 URL:http://example.com>
 ```
 
-#### Headers
+##### Headers
 
 ``` ruby
 request.headers["Accept-Charset"] = "utf-8"
@@ -169,7 +207,7 @@ request.headers = { "Accept-Charset" => "utf-8" }
 request.headers # => { "Accept-Charset" => "utf-8" }
 ```
 
-#### Body
+##### Body
 
 ``` ruby
 request.body = "scary monsters and nice sprites"
@@ -179,7 +217,7 @@ request.body = { user_id: 123, active: false }
 request.body # => "user_id=123&active=false"
 ```
 
-#### Timeouts
+##### Timeouts
 
 ``` ruby
 request.open_timeout = 30 # seconds
@@ -226,19 +264,19 @@ response = HTTPI.get(request)
 response.body # => "<!DOCTYPE HTML PUBLIC ...>"
 ```
 
-#### Code:
+##### Code:
 
 ``` ruby
 response.code # => 200
 ``` 
 
-#### Headers:
+##### Headers:
 
 ``` ruby
 response.headers # => { "Content-Encoding" => "gzip" }
 ``` 
 
-#### Body:
+##### Body:
 
 ``` ruby
 response.body # => "<!DOCTYPE HTML PUBLIC ...>"
@@ -251,7 +289,7 @@ You can still access the raw response body though:
 response.raw_body # => "x��Qt�w�pU���Qu��tV��ӳ�[��"
 ``` 
 
-#### Error:
+##### Error:
 
 ``` ruby
 response.code   # => 404
@@ -270,4 +308,3 @@ HTTPI.log       = false     # disable logging
 HTTPI.logger    = MyLogger  # change the logger
 HTTPI.log_level = :info     # change the log level
 ```
-
