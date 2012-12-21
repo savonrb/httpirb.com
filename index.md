@@ -27,17 +27,14 @@ HTTPI provides a common interface for Ruby’s most popular HTTP clients:
 * [HTTPClient](http://rubygems.org/gems/httpclient)
 * [Curb](http://rubygems.org/gems/curb)
 * [Net::HTTP](http://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
-
-As of version 2, HTTPI supports EventMachine:
-
 * [EM-HTTP-Request](http://rubygems.org/gems/em-http-request) (also requires [EM-Synchrony](http://rubygems.org/gems/em-synchrony))
 
 Due to the fact that Rubygems does not allow optional dependencies, HTTPI does not specify any of these
 libraries as direct dependencies. Therefore if you want to use anything other than Net::HTTP, you need
-to manually require the library or make sure it’s available in your load path.
+to make sure it’s available in your load path.
 
 When you’re executing any HTTP request for the first time without having specified an adapter to use,
-HTTPI tries to load and use the „best“ library for you. It follows a specific load order with Net::HTTP at the
+HTTPI tries to load and use the "best" library for you. It follows a specific load order with Net::HTTP at the
 end of the chain:
 
 ``` ruby
