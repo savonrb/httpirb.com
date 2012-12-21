@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "jekyll", :path => "../jekyll"
+gem "jekyll", "~> 0.11"
 gem "compass", "~> 0.12"
 gem "rake", "~> 0.9"
 
