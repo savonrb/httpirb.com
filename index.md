@@ -191,6 +191,16 @@ request.url = "http://example.com"
 request.url # => #<URI::HTTP:0x101c1ab18 URL:http://example.com>
 ```
 
+##### Query
+
+``` ruby
+request.url = "http://example.com"
+request.query = "q=query"
+# or
+request.query = {:q => "query"}
+request.url.to_s # => "http://example.com?q=query"
+```
+
 ##### Proxy
 
 ``` ruby
