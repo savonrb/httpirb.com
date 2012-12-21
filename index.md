@@ -173,7 +173,7 @@ HTTPI.request(:custom, request)
 
 ### Options
 
-The `HTTPI::Request` object should support every option you might need to specify.  
+The `HTTPI::Request` object should support every option you might need to specify.
 It can be created with a request URL, an options Hash or no arguments at all.
 
 ``` ruby
@@ -235,7 +235,7 @@ request.auth.digest("username", "password")  # HTTP digest auth credentials
 request.auth.gssnegotiate                    # HTTP Negotiate/SPNEGO (aka Kerberos)
 ```
 
-Please note that HTTP Negotiate authentication is only supported by the Curb adapter.  
+Please note that HTTP Negotiate authentication is only supported by the Curb adapter.
 For experimental NTLM authentication, please use the [httpi-ntlm](http://rubygems.org/gems/httpi-ntlm) gem.
 
 ``` ruby
@@ -268,33 +268,33 @@ response.body # => "<!DOCTYPE HTML PUBLIC ...>"
 
 ``` ruby
 response.code # => 200
-``` 
+```
 
 ##### Headers:
 
 ``` ruby
 response.headers # => { "Content-Encoding" => "gzip" }
-``` 
+```
 
 ##### Body:
 
 ``` ruby
 response.body # => "<!DOCTYPE HTML PUBLIC ...>"
-``` 
+```
 
-This method automatically handles gzipped and [DIME](http://en.wikipedia.org/wiki/Direct_Internet_Message_Encapsulation) encoded responses.  
+This method automatically handles gzipped and [DIME](http://en.wikipedia.org/wiki/Direct_Internet_Message_Encapsulation) encoded responses.
 You can still access the raw response body though:
 
 ``` ruby
 response.raw_body # => "x��Qt�w�pU���Qu��tV��ӳ�[��"
-``` 
+```
 
 ##### Error:
 
 ``` ruby
 response.code   # => 404
 response.error? # => true
-``` 
+```
 
 A response is considered successful when the response code lies between 200 and 299.
 
