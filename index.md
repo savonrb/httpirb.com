@@ -26,8 +26,11 @@ HTTPI provides a common interface for Ruby’s most popular HTTP clients:
 
 * [HTTPClient](http://rubygems.org/gems/httpclient)
 * [Curb](http://rubygems.org/gems/curb)
-* [Net::HTTP](http://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
 * [EM-HTTP-Request](http://rubygems.org/gems/em-http-request) (also requires [EM-Synchrony](http://rubygems.org/gems/em-synchrony))
+* [Net::HTTP](http://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
+* [Net::HTTP::Persistent](http://rubygems.org/gems/net-http-persistent)
+* [excon](http://rubygems.org/gems/excon)
+* [Rack](http://rubygems.org/gems/rack)
 
 Due to the fact that Rubygems does not allow optional dependencies, HTTPI does not specify any of these
 libraries as direct dependencies. Therefore if you want to use anything other than Net::HTTP, you need
@@ -38,14 +41,15 @@ HTTPI tries to load and use the "best" library for you. It follows a specific lo
 end of the chain:
 
 ``` ruby
-[:httpclient, :curb, :em_http, :net_http]
+[:httpclient, :curb, :em_http, :excon, :net_http, :net_http_persistent]
 ```
 
 You can also manually specify which adapter you would like to use:
 
 ``` ruby
-HTTPI.adapter = :curb  # or one of [:httpclient, :em_http, :net_http]
+HTTPI.adapter = :curb
 ```
+
 
 #### Adding new adapters
 
@@ -234,22 +238,30 @@ request.read_timeout = 30 # seconds
 
 ### Authentication
 
-`HTTPI::Request` supports HTTP basic, digest and Negotiate/SPNEGO authentication.
+`HTTPI::Request` supports HTTP basic and digest authentication.
 
 ``` ruby
-request.auth.basic("username", "password")   # HTTP basic auth credentials
-request.auth.digest("username", "password")  # HTTP digest auth credentials
-request.auth.gssnegotiate                    # HTTP Negotiate/SPNEGO (aka Kerberos)
+request.auth.basic("username", "password")
+request.auth.digest("username", "password")
 ```
 
-Please note that HTTP Negotiate authentication is only supported by the Curb adapter.
-For experimental NTLM authentication, please use the [httpi-ntlm](http://rubygems.org/gems/httpi-ntlm) gem.
+The `:curb` adapter provides support for HTTP Negotiate/SPNEGO (aka Kerberos) authentication.
 
 ``` ruby
-request.auth.ntlm("username", "password")    # NTLM auth credentials
+request.auth.gssnegotiate
 ```
 
-In case you're depending on SSL client authentication, HTTPI has you covered as well.
+For NTLM authentication, HTTPI ships with a solution build on top of the `:net_http` adapter
+and the [Ruby/NTLM](http://rubygems.org/gems/rubyntlm) library. The configuration method accepts
+an optional third parameter to specify a domain. If the domain is omitted we assume that you want
+to authenticate to the local server.
+
+``` ruby
+request.auth.ntlm("username", "password")
+request.auth.ntlm("username", "password", "domain")
+```
+
+In case you're using SSL client authentication, HTTPI has you covered as well.
 
 ``` ruby
 request.auth.ssl.cert_key_file     = "client_key.pem"   # the private key file to use
