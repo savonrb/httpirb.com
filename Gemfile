@@ -1,10 +1,10 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem "jekyll", "~> 0.11"
-gem "compass", "~> 0.12"
-gem "rake", "~> 0.9"
+gem 'jekyll',  '~> 1.0'
+gem 'compass', '~> 0.12'
+gem 'rake',    '~> 0.9'
 
-gem "foreman"
-gem "redcarpet"
-gem "albino"
-gem "liquid", "2.2.2"
+gem 'foreman'
+gem 'redcarpet'
+gem 'albino'
+gem 'liquid'

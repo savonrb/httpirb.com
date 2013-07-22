@@ -12,9 +12,9 @@ namespace :jekyll do
     sh "jekyll --server --auto"
   end
 
-  desc "Clean temporary files and run the server"
+  desc "Build the website"
   task :compile => [:clean, 'compass:clean', 'compass:compile'] do
-    sh "jekyll"
+    sh "jekyll build"
   end
 end
 

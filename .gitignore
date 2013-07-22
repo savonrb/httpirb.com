@@ -2,4 +2,4 @@ _cache
 _site
 .sass-cache
 stylesheets
-deploy.rb
+deploy
