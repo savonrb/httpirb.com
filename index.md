@@ -235,6 +235,15 @@ request.open_timeout = 30 # seconds
 request.read_timeout = 30 # seconds
 ```
 
+##### Chunked Responses
+
+``` ruby
+response_body = ""
+request.on_body do |body|
+  response_body << body
+end
+response_body # complete body
+```
 
 ### Authentication
 
