@@ -13,7 +13,7 @@ $ gem install httpi
 {% endhighlight %}
 
 <ul id='links'>
-  <li><a href='http://github.com/rubiii/httpi'><code>Code (Github)</code></a></li>
+  <li><a href='http://github.com/savonrb/httpi'><code>Code (Github)</code></a></li>
   <li><a href='http://rubydoc.info/gems/httpi/frames'><code>RDoc (Rubydoc)</code></a></li>
   <li><a href='http://travis-ci.org/#!/savonrb/httpi'><code>CI (Travis)</code></a></li>
   <li><a href='https://groups.google.com/forum/#!forum/httpirb'><code>Mailing list (Google)</code></a></li>
