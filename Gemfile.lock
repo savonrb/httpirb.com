@@ -39,7 +39,7 @@ GEM
     pygments.rb (0.5.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
-    rake (0.9.6)
+    rake (12.3.1)
     redcarpet (3.0.0)
     safe_yaml (0.7.1)
     sass (3.2.9)
@@ -56,5 +56,5 @@ DEPENDENCIES
   foreman
   jekyll (~> 1.0)
   liquid
-  rake (~> 0.9)
+  rake (~> 12.3)
   redcarpet
