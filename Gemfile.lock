@@ -60,7 +60,7 @@ GEM
       forwardable-extended (~> 2.6)
     posix-spawn (0.3.13)
     public_suffix (3.0.3)
-    rake (12.3.2)
+    rake (13.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -80,5 +80,5 @@ DEPENDENCIES
   foreman
   jekyll (~> 3.8)
   liquid
-  rake (~> 12.3)
+  rake (~> 13.0)
   redcarpet
