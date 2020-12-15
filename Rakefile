@@ -9,7 +9,7 @@ namespace :jekyll do
 
   desc "Run the jekyll dev server"
   task :server do
-    sh "jekyll --server --auto"
+    sh "jekyll server --watch"
   end
 
   desc "Build the website"
