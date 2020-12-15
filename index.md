@@ -31,6 +31,7 @@ HTTPI provides a common interface for Ruby’s most popular HTTP clients:
 * [Net::HTTP::Persistent](http://rubygems.org/gems/net-http-persistent)
 * [excon](http://rubygems.org/gems/excon)
 * [Rack](http://rubygems.org/gems/rack)
+* [http.rb](https://github.com/httprb/http)
 
 Due to the fact that Rubygems does not allow optional dependencies, HTTPI does not specify any of these
 libraries as direct dependencies. Therefore if you want to use anything other than Net::HTTP, you need
@@ -41,7 +42,7 @@ HTTPI tries to load and use the "best" library for you. It follows a specific lo
 end of the chain:
 
 ``` ruby
-[:httpclient, :curb, :em_http, :excon, :net_http, :net_http_persistent]
+[:httpclient, :curb, :em_http, :excon, :http, :net_http, :net_http_persistent]
 ```
 
 You can also manually specify which adapter you would like to use:
