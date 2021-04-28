@@ -63,7 +63,7 @@ GEM
       forwardable-extended (~> 2.6)
     posix-spawn (0.3.13)
     public_suffix (4.0.6)
-    rake (12.3.3)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -85,7 +85,7 @@ DEPENDENCIES
   compass (~> 1.0)
   foreman
   jekyll (~> 4.2)
-  rake (~> 12.3)
+  rake (~> 13.0)
 
 BUNDLED WITH
    2.1.4
