@@ -6,15 +6,15 @@ layout: default
 
 ### Installation
 
-HTTPI is available through [Rubygems](http://rubygems.org/gems/httpi) and can be installed via:
+HTTPI is available through [Rubygems](https://rubygems.org/gems/httpi) and can be installed via:
 
 {% highlight bash %}
 $ gem install httpi
 {% endhighlight %}
 
 <ul id='links'>
-  <li><a href='http://github.com/savonrb/httpi'><code>Code (Github)</code></a></li>
-  <li><a href='http://rubydoc.info/gems/httpi'><code>RDoc (Rubydoc)</code></a></li>
+  <li><a href='https://github.com/savonrb/httpi'><code>Code (Github)</code></a></li>
+  <li><a href='https://rubydoc.info/gems/httpi'><code>RDoc (Rubydoc)</code></a></li>
   <li><a href='https://github.com/savonrb/httpi/actions'><code>CI (Github Actions)</code></a></li>
 </ul>
 
@@ -23,13 +23,13 @@ $ gem install httpi
 
 HTTPI provides a common interface for Ruby’s most popular HTTP clients:
 
-* [HTTPClient](http://rubygems.org/gems/httpclient)
-* [Curb](http://rubygems.org/gems/curb)
-* [EM-HTTP-Request](http://rubygems.org/gems/em-http-request) (also requires [EM-Synchrony](http://rubygems.org/gems/em-synchrony))
-* [Net::HTTP](http://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
-* [Net::HTTP::Persistent](http://rubygems.org/gems/net-http-persistent)
-* [excon](http://rubygems.org/gems/excon)
-* [Rack](http://rubygems.org/gems/rack)
+* [HTTPClient](https://rubygems.org/gems/httpclient)
+* [Curb](https://rubygems.org/gems/curb)
+* [EM-HTTP-Request](https://rubygems.org/gems/em-http-request) (also requires [EM-Synchrony](https://rubygems.org/gems/em-synchrony))
+* [Net::HTTP](https://ruby-doc.org/stdlib/libdoc/net/http/rdoc)
+* [Net::HTTP::Persistent](https://rubygems.org/gems/net-http-persistent)
+* [excon](https://rubygems.org/gems/excon)
+* [Rack](https://rubygems.org/gems/rack)
 * [http.rb](https://github.com/httprb/http)
 
 Due to the fact that Rubygems does not allow optional dependencies, HTTPI does not specify any of these
@@ -90,7 +90,7 @@ In order to provide a common interface, HTTPI exposes the `HTTPI::Request` (requ
 your requests. Here’s a very simple example of how you can use this object to execute a GET request:
 
 ``` ruby
-request = HTTPI::Request.new("http://example.com")
+request = HTTPI::Request.new("https://example.com")
 HTTPI.get(request)
 ```
 
@@ -98,7 +98,7 @@ And here’s an example of a POST request with a payload using the Curb adapter:
 
 ``` ruby
 request = HTTPI::Request.new
-request.url = "http://example.com"
+request.url = "https://example.com"
 request.body = "bangarang"
 
 HTTPI.post(request, :curb)
@@ -108,7 +108,7 @@ The previous example only specifies a URL and a request body. For simple use cas
 to omit the request object:
 
 ``` ruby
-HTTPI.post("http://example.com", "bangarang", :curb)
+HTTPI.post("https://example.com", "bangarang", :curb)
 ```
 
 As you can see, the `HTTPI` module provides access to common HTTP request methods. All of them either accept a
@@ -160,7 +160,7 @@ The request method is special. You can use it to dynamically specify the HTTP re
 
 ``` ruby
 http_method = :get
-request = HTTPI::Request.new("http://example.com")
+request = HTTPI::Request.new("https://example.com")
 
 HTTPI.request(http_method, request)
 ```
@@ -179,8 +179,8 @@ It can be created with a request URL, an options Hash or no arguments at all.
 
 ``` ruby
 HTTPI::Request.new
-HTTPI::Request.new("http://example.com")
-HTTPI::Request.new(url: "http://example.com", open_timeout: 15)
+HTTPI::Request.new("https://example.com")
+HTTPI::Request.new(url: "https://example.com", open_timeout: 15)
 ```
 
 Of course, every Hash option also has its own accessor method.
@@ -188,25 +188,25 @@ Of course, every Hash option also has its own accessor method.
 ##### URL
 
 ``` ruby
-request.url = "http://example.com"
-request.url # => #<URI::HTTP:0x101c1ab18 URL:http://example.com>
+request.url = "https://example.com"
+request.url # => #<URI::HTTP:0x101c1ab18 URL:https://example.com>
 ```
 
 ##### Query
 
 ``` ruby
-request.url = "http://example.com"
+request.url = "https://example.com"
 request.query = "q=query"
 # or
 request.query = {:q => "query"}
-request.url.to_s # => "http://example.com?q=query"
+request.url.to_s # => "https://example.com?q=query"
 ```
 
 ##### Proxy
 
 ``` ruby
-request.proxy = "http://example.com"
-request.proxy # => #<URI::HTTP:0x101c1ab18 URL:http://example.com>
+request.proxy = "https://example.com"
+request.proxy # => #<URI::HTTP:0x101c1ab18 URL:https://example.com>
 ```
 
 ##### Headers
@@ -261,7 +261,7 @@ request.auth.gssnegotiate
 ```
 
 For NTLM authentication, HTTPI ships with a solution build on top of the `:net_http` adapter
-and the [Ruby/NTLM](http://rubygems.org/gems/rubyntlm) library. The configuration method accepts
+and the [Ruby/NTLM](https://rubygems.org/gems/rubyntlm) library. The configuration method accepts
 an optional third parameter to specify a domain. If the domain is omitted we assume that you want
 to authenticate to the local server.
 
@@ -310,7 +310,7 @@ response.headers # => { "Content-Encoding" => "gzip" }
 response.body # => "<!DOCTYPE HTML PUBLIC ...>"
 ```
 
-This method automatically handles gzipped and [DIME](http://en.wikipedia.org/wiki/Direct_Internet_Message_Encapsulation) encoded responses.
+This method automatically handles gzipped and [DIME](https://en.wikipedia.org/wiki/Direct_Internet_Message_Encapsulation) encoded responses.
 You can still access the raw response body though:
 
 ``` ruby
