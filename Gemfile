@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'jekyll',  '~> 4.3'
+gem 'jekyll',  '~> 4.4'
 gem 'compass', '~> 1.0'
 gem 'rake',    '~> 13.2'
 
